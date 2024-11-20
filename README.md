@@ -6,6 +6,24 @@
 - 前後端分離架構，提升開發效率
 - 支援 CORS，方便本地開發測試
 
+## 架構
+```
+Simple-TodoList/
+├── backend/
+│   └── main.py
+├── frontend/
+│   ├── public/
+│   │   ├── favicon.ico
+│   │   └── index.html
+│   └── src/
+│       ├── App.vue
+│       └── main.js
+├── LICENSE
+├── package.json
+├── package-lock.json
+└── README.md
+```
+
 ## 環境需求
 - **Python 3.8+**
 - **Node.js 14+ / npm**
@@ -35,7 +53,6 @@ npm run serve
 ### 啟動 FastAPI 後端
 ```bash
 cd backend
-pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 後端啟動後可透過 http://127.0.0.1:8000/docs 查看 API 文件。
