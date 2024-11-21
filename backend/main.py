@@ -4,6 +4,7 @@
 模組包括:
     List: 用於類型註解以表示列表
     FastAPI, HTTPException: 提供 FastAPI 框架功能和 HTTP 錯誤處理
+    HTMLResponse: 用於回傳 HTML 頁面
     CORSMiddleware: 用於處理跨來源資源共用
     BaseModel: 提供 Pydantic 的數據驗證功能
 """
@@ -51,7 +52,10 @@ async def root():
     Returns:
         HTMLResponse: 回傳 HTML 頁面
     """
-    return HTMLResponse(content="<h1>APP alive</h1><p>View docs at <a href='/docs'>/docs</a>", status_code=200)
+    return HTMLResponse(
+        content="<h1>APP alive</h1><p>View docs at <a href='/docs'>/docs</a>",
+        status_code=200
+    )
 
 # 獲取所有 Todo 項目
 @app.get("/todos", response_model=List[TodoItem])
@@ -112,6 +116,12 @@ def delete_todo(todo_id: int):
 
     Returns:
         dict: {"detail": "Todo deleted"}
+
+    Raises:
+        HTTPException: 當指定的 Todo ID 不存在時，拋出 404 錯誤
     """
-    todo_list.remove([todo for todo in todo_list if todo.id == todo_id][0])
-    return {"detail": "Todo deleted"}
+    for index, todo in enumerate(todo_list):
+        if todo.id == todo_id:
+            todo_list.pop(index)
+            return {"detail": "Todo deleted"}
+    raise HTTPException(status_code=404, detail="Todo not found")
