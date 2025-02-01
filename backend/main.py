@@ -4,13 +4,11 @@
 模組包括:
     List: 用於類型註解以表示列表
     FastAPI, HTTPException: 提供 FastAPI 框架功能和 HTTP 錯誤處理
-    HTMLResponse: 用於回傳 HTML 頁面
     CORSMiddleware: 用於處理跨來源資源共用
     BaseModel: 提供 Pydantic 的數據驗證功能
 """
 from typing import List
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -50,12 +48,9 @@ async def root():
     APP 是否在線
 
     Returns:
-        HTMLResponse: 回傳 HTML 頁面
+        dict: {"alive": True}
     """
-    return HTMLResponse(
-        content="<h1>APP alive</h1><p>View docs at <a href='/docs'>/docs</a>",
-        status_code=200
-    )
+    return {"alive": True, "docs": "/docs"}
 
 # 獲取所有 Todo 項目
 @app.get("/todos", response_model=List[TodoItem])
