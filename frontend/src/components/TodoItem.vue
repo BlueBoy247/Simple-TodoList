@@ -70,6 +70,7 @@ export default {
             return date.toLocaleString();
         },
     },
+    emits: ['update-todo', 'delete-todo'],
 };
 </script>
 
