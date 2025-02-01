@@ -14,7 +14,7 @@ export default{
     props: {
         title: String,
         author: String,
-        year: Number
+        year: String
     }
 }
 </script>
