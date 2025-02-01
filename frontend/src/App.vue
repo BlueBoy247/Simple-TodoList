@@ -83,7 +83,8 @@ export default{
          * @returns {Promise<void>}
          */
         async fetchTodos(){
-            const response = await axios.get('http://127.0.0.1:8000/todos');
+            const backendUrl = process.env.VUE_APP_BACKEND_URL;
+            const response = await axios.get(`${ backendUrl }/todos`);
             this.todos = response.data;
         },
           
