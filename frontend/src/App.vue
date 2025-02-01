@@ -74,6 +74,9 @@ export default{
 
     // 方法
     methods:{
+        backendUrl(){
+            return process.env.VUE_APP_BACKEND_URL;
+        },
         updateFilter(val){
             this.filter = val;
         },
@@ -83,8 +86,7 @@ export default{
          * @returns {Promise<void>}
          */
         async fetchTodos(){
-            const backendUrl = process.env.VUE_APP_BACKEND_URL;
-            const response = await axios.get(`${ backendUrl }/todos`);
+            const response = await axios.get(`${ this.backendUrl() }/todos`);
             this.todos = response.data;
         },
           
@@ -106,7 +108,7 @@ export default{
                 title: this.newTodo,
                 completed: false,
             };
-            await axios.post('http://127.0.0.1:8000/todos', newItem);
+            await axios.post(`${ this.backendUrl() }/todos`, newItem);
             this.newTodo = '';
             this.fetchTodos();
         },
@@ -120,7 +122,7 @@ export default{
          * @returns {Promise<void>}
          */
         async updateTodo(todo) {
-            await axios.put(`http://127.0.0.1:8000/todos/${todo.id}`, todo);
+            await axios.put(`${ this.backendUrl() }/todos/${todo.id}`, todo);
             this.fetchTodos();
         },
           
@@ -133,7 +135,7 @@ export default{
          * @returns {Promise<void>}
          */
         async deleteTodo(id) {
-            await axios.delete(`http://127.0.0.1:8000/todos/${id}`);
+            await axios.delete(`${ this.backendUrl() }/todos/${id}`);
             this.fetchTodos();
         },
 
