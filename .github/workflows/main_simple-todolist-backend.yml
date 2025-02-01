@@ -84,3 +84,4 @@ jobs:
           app-name: 'simple-todolist-backend'
           slot-name: 'Production'
           package: release.zip
+          restart: true
