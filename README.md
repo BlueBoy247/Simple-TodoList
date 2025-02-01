@@ -10,17 +10,31 @@
 ```
 Simple-TodoList/
 ├── backend/
-│   └── main.py
+│   ├── main.py
+│   └── requirements.txt
 ├── frontend/
 │   ├── public/
 │   │   ├── favicon.ico
 │   │   └── index.html
-│   └── src/
-│       ├── App.vue
-│       └── main.js
+│   ├── src/
+│   │   ├── assets/
+│   │   │   └── logo.png
+│   │   ├── components/
+│   │   │   ├── AppHeader.vue
+│   │   │   ├── TodoBoard.vue
+│   │   │   ├── TodoFilter.vue
+│   │   │   ├── TodoForm.vue
+│   │   │   └── TodoItem.vue
+│   │   ├── App.vue
+│   │   └── main.js
+│   ├── babel.config.js
+│   ├── jsconfig.json
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── README.md
+│   └── vue.config.js
+├── .gitattributes
 ├── LICENSE
-├── package.json
-├── package-lock.json
 └── README.md
 ```
 
