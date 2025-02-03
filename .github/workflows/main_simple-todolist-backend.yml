@@ -11,8 +11,6 @@ on:
     paths:
       - 'backend/**'
       - '.github/workflows/main_simple-todolist-backend.yml'
-  schedule:
-    - cron: '0 0 * * 0'
   workflow_dispatch:
 
 jobs:
@@ -22,10 +20,10 @@ jobs:
       contents: read #This is required for actions/checkout
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
       - name: Set up Python version
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5
         with:
           python-version: '3.10'
 
@@ -46,7 +44,7 @@ jobs:
         run: zip ../release.zip ./* -r
 
       - name: Upload artifact for deployment jobs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4
         with:
           name: python-app
           path: |
@@ -66,19 +64,19 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
         with:
           name: python-app
 
       - name: Login to Azure
-        uses: azure/login@v2
+        uses: azure/login@a65d910e8af852a8061c627c456678983e180302 # v2
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_ACBCD1AD1787421DB5F7670548F0C5E6 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_24E33D13451B42C9B6B2AF0BA1F5E138 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_F8FB15C62D2F4511BC43694BF26E7AA1 }}
 
       - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v3
+        uses: azure/webapps-deploy@2fdd5c3ebb4e540834e86ecc1f6fdcd5539023ee # v3
         id: deploy-to-webapp
         with:
           app-name: 'simple-todolist-backend'
