@@ -24,7 +24,7 @@ jobs:
     permissions:
       contents: read
     environment:
-      name: 'Production - Frontend'
+      name: ${{ (github.ref == 'refs/heads/main' && 'Production - Frontend') || 'Preview - Frontend' }}
       url: ${{ steps.builddeploy.outputs.static_web_app_url }}
     env:
       VUE_APP_BACKEND_URL: ${{ secrets.BACKEND_URL }}
