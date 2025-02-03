@@ -33,6 +33,12 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - name: Delete Related Deployments
+        uses: strumwolf/delete-deployment-environment@a4825dd9648c57da8437a4885c3fcad58beac69c # v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          environment: Production - Frontend
+          onlyRemoveDeployments: true
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@4d27395796ac319302594769cfe812bd207490b1 # v1
