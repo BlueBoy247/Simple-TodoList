@@ -7,7 +7,9 @@ on:
 
 jobs:
   restart:
+    name: Restart
     runs-on: ubuntu-latest
+    permissions: {}
     steps:
       - name: Login to Azure
         uses: azure/login@a65d910e8af852a8061c627c456678983e180302 # v2
