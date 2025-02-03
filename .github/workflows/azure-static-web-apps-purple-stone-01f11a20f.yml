@@ -60,7 +60,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           environment: Preview - Frontend
-          ref: ${{ github.ref_name }}
+          ref: ${{ github.head_ref }}
           onlyRemoveDeployments: true
       - name: Close Pull Request
         id: closepullrequest
