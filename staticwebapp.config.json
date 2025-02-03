@@ -6,7 +6,8 @@
           "route": "/*",
           "allowedRoles": [
             "authenticated"
-          ]
+          ],
+          "statusCode": 401
         }
       ],
       "responseOverrides": {
