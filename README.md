@@ -1,5 +1,7 @@
 # Simple-TodoList
-使用Vue.js與FastAPI做的簡單本地端Todo List。
+繁體中文 | [English](./README-en.md)
+
+基於 Vue.js 和 FastAPI 的簡易 Todo List 應用。
 
 ## 功能
 - 新增、查看、更新、刪除 (CRUD) Todo 項目
@@ -39,34 +41,58 @@ Simple-TodoList/
 ```
 
 ## 環境需求
-- **Python 3.8+**
+- **Python 3.10+**
 - **Node.js 14+ / npm**
-- **FastAPI**
-- **Vue.js**
 
-## 環境安裝
-前端(Vue.js)依賴：
-``` bash
-npm install -g @vue/cli   # 安裝 Vue CLI
-npm install axios         # 安裝 axios
-```
-
-後端(FastAPI)依賴：
-``` bash
-pip install fastapi uvicorn pydantic fastapi[all]  # 安裝 FastAPI 和相關依賴
-```
-
-## 執行指令
-### 啟動 Vue.js 前端
+## 啟動應用
+### 本地端
+#### frontend
+1. 進入 frontend 目錄
 ```bash
 cd frontend
+```
+2. 安裝依賴
+```bash
+npm install  # 安裝 Vue.js 和相關依賴
+```
+3. 複製 .env 檔案
+```bash
+cp .env.template .env
+```
+4. 啟動應用
+```bash
 npm run serve
 ```
 前端啟動後可在 http://localhost:8080 瀏覽應用。
 
-### 啟動 FastAPI 後端
+#### backend
+1. 進入 backend 目錄
 ```bash
 cd backend
+```
+2. 安裝依賴
+```bash
+pip install -r requirements.txt  # 安裝 FastAPI 和相關依賴
+```
+3. 啟動應用
+```bash
 uvicorn main:app --reload
 ```
-後端啟動後可透過 http://127.0.0.1:8000/docs 查看 API 文件。
+後端啟動後，API 服務將運行於 http://localhost:8000，並可透過 http://localhost:8000/docs 查看 Swagger UI 文件。
+
+### Docker
+啟動 Docker Compose 容器。
+```bash
+docker compose up -d --build
+```
+> 說明：
+> - `-d`：以背景模式執行容器
+> - `--build`：強制重新建置映像檔（無論容器是否已存在）
+
+應用啟動後：
+- 前端應用應可透過 http://localhost:8080 瀏覽。
+- 後端 API 服務應運行於 http://127.0.0.1:8000，並可透過 http://127.0.0.1:8000/docs 查看 Swagger UI 文件。
+
+## 環境變數
+在 `.env` 檔案中設定以下環境變數：
+- `VUE_APP_BACKEND_URL`: 指定前端應用應該連接的後端 API 服務 URL（預設 `http://127.0.0.1:8000`）
