@@ -1,6 +1,6 @@
 <template>
 <!--
-    篩選 TodoList 的項目
+    篩選 TodoObject
     使用 v-model 來雙向綁定 currentFilter 的值
     使選擇框中的值與 currentFilter 的值保持同步
 -->

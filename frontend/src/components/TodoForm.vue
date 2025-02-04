@@ -7,7 +7,7 @@
     <input
         type="text"
         v-model="newTodoInput"
-        placeholder="新增 Todo"
+        placeholder="想做什麼?"
         minlength="1"
         maxlength="100"
         required
@@ -26,7 +26,7 @@ export default{
 
     // 使用 emits 宣告組件發出的事件
     emits: [
-        // - 'addTodo': 當使用者提交表單時發出該事件，將新的 Todo 項目傳遞給父組件
+        // - 'addTodo': 當使用者提交表單時發出該事件，將新的 TodoObject 傳遞給父組件
         'addTodo'
     ],
 

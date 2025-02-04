@@ -1,6 +1,6 @@
 <template>
 <!--
-    顯示 Todo 項目的完成狀態
+    顯示 TodoObject 的完成狀態
     使用 v-model 來雙向綁定 todo.completed 的值
     使輸入框中的值與 todo.completed 的值保持同步
     使用 @change 來觸發 updateTodo 函數
@@ -14,14 +14,14 @@
 </td>
 
 <!--
-    顯示 Todo 項目的創建時間
+    顯示 TodoObject 的創建時間
 -->
 <td class="time">
     {{ formatDate(localTodo.id) }}
 </td>
 
 <!--
-    顯示 Todo 項目的標題
+    顯示 TodoObject 的標題
     使用 :style 來設定標題的樣式
     使標題的樣式與 todo.completed 的值保持同步
 -->
@@ -40,7 +40,7 @@
 </td>
 
 <!--
-    刪除 Todo 項目
+    刪除 TodoObject
     使用 @click 來觸發 deleteTodo 函數
 -->
 <td class="delete">
