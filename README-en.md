@@ -63,7 +63,7 @@ cp .env.template .env
 ```bash
 npm run serve
 ```
-Once the frontend is running, you can view the application at http://localhost:8080.
+Once the frontend is running, you can view the application at [http://localhost:8080](http://localhost:8080).
 
 #### backend
 1. Enter the `backend` directory
@@ -78,7 +78,7 @@ pip install -r requirements.txt  # Install FastAPI and related dependencies
 ```bash
 uvicorn main:app --reload
 ```
-After the backend is running, the API service will run on http://127.0.0.1:8000, and you can access it through http://127.0.0.1:8000/docs to view the Swagger UI documentation.
+After the backend is running, the API service will run on [http://127.0.0.1:8000](http://127.0.0.1:8000), and you can access it through [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) to view the Swagger UI documentation.
 
 ### Docker
 Start Docker Compose containers.
@@ -89,7 +89,7 @@ docker compose up -d --build
 > - `-d`: Run containers in the background
 > - `--build`: Force rebuild the image even if the container already exists
 
-After the containers are running, you can view the frontend application at http://localhost:8080. Besides, the backend API service will run on http://localhost:8000, and you can access it through http://localhost:8000/docs to view the Swagger UI documentation.
+After the containers are running, you can view the frontend application at [http://localhost:8080](http://localhost:8080). Besides, the backend API service will run on [http://localhost:8000](http://localhost:8000), and you can access it through [http://localhost:8000/docs](http://localhost:8000/docs) to view the Swagger UI documentation.
 
 ## Environment Variables
 In the `.env` file, set the following environment variables:
