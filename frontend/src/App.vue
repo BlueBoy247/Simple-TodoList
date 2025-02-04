@@ -1,5 +1,5 @@
 <template>
-    <AppHeader title="Simple TodoList" author="BlueBoy247" year="2024" />
+    <AppHeader title="Simple TodoList" author="BlueBoy247" year="2025" />
     <main>
         <TodoForm :newTodo="newTodo" @addTodo="addTodo" />
         <TodoFilter :filter="filter" @updateFilter="updateFilter" />
