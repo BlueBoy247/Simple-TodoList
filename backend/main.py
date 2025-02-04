@@ -24,24 +24,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Todo資料模型
-class TodoItem(BaseModel):
+class TodoObject(BaseModel):
     """
-    Todo 項目資料模型
+    待辦事項物件模型
 
     屬性:
-        id (int): Todo 項目的唯一 ID，以 Unix Timestamp 生成
-        title (str): Todo 項目的標題
-        completed (bool): Todo 項目的完成狀態，預設為 False
+        id (int): 待辦事項的唯一 ID, 以 Unix Timestamp 生成
+        title (str): 待辦事項的標題
+        completed (bool): 待辦事項的完成狀態，預設為 False
     """
     id: int
     title: str
     completed: bool = False
 
 # 模擬資料庫
-todo_list: List[TodoItem] = []
+todo_list: List[TodoObject] = []
 
-# APP alive
 @app.get("/", include_in_schema=False)
 async def root():
     """
@@ -52,47 +50,44 @@ async def root():
     """
     return {"alive": True, "docs": "/docs"}
 
-# 獲取所有 Todo 項目
-@app.get("/todos", response_model=List[TodoItem])
+@app.get("/todos", response_model=List[TodoObject])
 def get_todos():
     """
-    獲取所有 Todo 項目
+    獲取所有 TodoObject
 
     Returns:
-        List[TodoItem]: Todo 項目的列表
+        List[TodoObject]: TodoObject 的列表
     """
     return todo_list
 
-# 新增 Todo 項目
-@app.post("/todos", response_model=TodoItem)
-def create_todo(todo: TodoItem):
+@app.post("/todos", response_model=TodoObject)
+def create_todo(todo: TodoObject):
     """
-    新增 Todo 項目
+    新增 TodoObject
 
     Args:
-        todo (TodoItem): 要新增的 Todo 項目
+        todo (TodoObject): 要新增的 TodoObject
 
     Returns:
-        TodoItem: 新增的 Todo 項目
+        TodoObject: 新增的 TodoObject
     """
     todo_list.append(todo)
     return todo
 
-# 更新 Todo 項目
-@app.put("/todos/{todo_id}", response_model=TodoItem)
-def update_todo(todo_id: int, updated_todo: TodoItem):
+@app.put("/todos/{todo_id}", response_model=TodoObject)
+def update_todo(todo_id: int, updated_todo: TodoObject):
     """
-    更新 Todo 項目
+    更新 TodoObject
 
     Args:
-        todo_id (int): Todo 項目的 ID
-        updated_todo (TodoItem): 更新後的 Todo 項目資料
+        todo_id (int): TodoObject 的 ID
+        updated_todo (TodoObject): 更新後的 TodoObject 資料
 
     Returns:
-        TodoItem: 更新後的 Todo 項目
+        TodoObject: 更新後的 TodoObject
 
     Raises:
-        HTTPException: 當指定的 Todo ID 不存在時，拋出 404 錯誤
+        HTTPException: 當指定的 TodoObject ID 不存在時，拋出 404 錯誤
     """
     for index, todo in enumerate(todo_list):
         if todo.id == todo_id:
@@ -100,20 +95,19 @@ def update_todo(todo_id: int, updated_todo: TodoItem):
             return updated_todo
     raise HTTPException(status_code=404, detail="Todo not found")
 
-# 刪除 Todo 項目
 @app.delete("/todos/{todo_id}")
 def delete_todo(todo_id: int):
     """
-    刪除 Todo 項目
+    刪除 TodoObject
 
     Args:
-        todo_id (int): Todo 項目的 ID
+        todo_id (int): TodoObject 的 ID
 
     Returns:
         dict: {"detail": "Todo deleted"}
 
     Raises:
-        HTTPException: 當指定的 Todo ID 不存在時，拋出 404 錯誤
+        HTTPException: 當指定的 TodoObject ID 不存在時，拋出 404 錯誤
     """
     for index, todo in enumerate(todo_list):
         if todo.id == todo_id:
