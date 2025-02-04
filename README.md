@@ -63,7 +63,7 @@ cp .env.template .env
 ```bash
 npm run serve
 ```
-前端啟動後可在 http://localhost:8080 瀏覽應用。
+前端啟動後可在 [http://localhost:8080](http://localhost:8080) 瀏覽應用。
 
 #### backend
 1. 進入 backend 目錄
@@ -78,7 +78,7 @@ pip install -r requirements.txt  # 安裝 FastAPI 和相關依賴
 ```bash
 uvicorn main:app --reload
 ```
-後端啟動後，API 服務將運行於 http://localhost:8000，並可透過 http://localhost:8000/docs 查看 Swagger UI 文件。
+後端啟動後，API 服務將運行於 [http://127.0.0.1:8000](http://127.0.0.1:8000)，並可透過 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) 查看 Swagger UI 文件。
 
 ### Docker
 啟動 Docker Compose 容器。
@@ -90,8 +90,8 @@ docker compose up -d --build
 > - `--build`：強制重新建置映像檔（無論容器是否已存在）
 
 應用啟動後：
-- 前端應用應可透過 http://localhost:8080 瀏覽。
-- 後端 API 服務應運行於 http://127.0.0.1:8000，並可透過 http://127.0.0.1:8000/docs 查看 Swagger UI 文件。
+- 前端應用應可透過 [http://localhost:8080](http://localhost:8080) 瀏覽。
+- 後端 API 服務應運行於 [http://localhost:8000](http://localhost:8000)，並可透過 [http://localhost:8000/docs](http://localhost:8000/docs) 查看 Swagger UI 文件。
 
 ## 環境變數
 在 `.env` 檔案中設定以下環境變數：
