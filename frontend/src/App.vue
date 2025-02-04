@@ -17,7 +17,6 @@ import TodoForm from '@/components/TodoForm.vue';
 import TodoFilter from '@/components/TodoFilter.vue';
 import TodoBoard from './components/TodoBoard.vue';
 
-// 前端 Todo 項目資料物件
 export default{
     
     /** TodoList 的主組件
@@ -39,9 +38,9 @@ export default{
      * TodoList 的資料
      * 
      * @property {Array<Object>} todos  
-     *      Todo 項目的清單，每個項目為一個物件，內容為 `{ id: number, title: string, completed: boolean }`
+     *      TodoObject 的清單，每個項目為一個物件，內容為 `{ id: number, title: string, completed: boolean }`
      * @property {string} newTodo  
-     *      使用者輸入的新 Todo 項目的標題
+     *      使用者輸入的新 TodoObject 的標題
      * @property {string} filter  
      *      篩選的類型，可能的值為 `"all"`, `"active"`, `"completed"`
      */
@@ -56,9 +55,9 @@ export default{
     // 計算屬性
     computed: {
         /**
-         * 根據 filter 的值，回傳已篩選的 Todo 項目清單
+         * 根據 filter 的值，回傳已篩選的 TodoObject 清單
          * 
-         * @returns {Array<TodoItem>}
+         * @returns {Array<Object>}
          */
         filteredTodos(){
             switch (this.filter){
@@ -91,10 +90,10 @@ export default{
         },
           
         /**
-         * 新增 Todo 項目
+         * 新增 TodoObject
          * 
          * @description
-         *   如果使用者輸入的內容不為空白，則將其轉換為 TodoItem 物件
+         *   如果使用者輸入的內容不為空白，則將其轉換為 TodoObject
          *   並將其 POST 到後端 API，然後清空輸入框
          *   並重新 fetch TodoList 的資料
          * 
@@ -103,34 +102,34 @@ export default{
         async addTodo(val){
             this.newTodo = val;
             if (this.newTodo.trim() === '') return;
-            const newItem = {
+            const newObject = {
                 id: Date.now(),
                 title: this.newTodo,
                 completed: false,
             };
-            await axios.post(`${ this.backendUrl() }/todos`, newItem);
+            await axios.post(`${ this.backendUrl() }/todos`, newObject);
             this.newTodo = '';
             this.fetchTodos();
         },
 
         /**
-         * 更新 Todo 項目
+         * 更新 TodoObject
          * 
-         * @param {Object} todo
-         *      要更新的 Todo 項目物件，包含 id、title 和 completed 狀態
+         * @param {Object} todoObject
+         *      要更新的 TodoObject，包含 id、title 和 completed 狀態
          * 
          * @returns {Promise<void>}
          */
-        async updateTodo(todo) {
-            await axios.put(`${ this.backendUrl() }/todos/${todo.id}`, todo);
+        async updateTodo(todoObject) {
+            await axios.put(`${ this.backendUrl() }/todos/${todoObject.id}`, todoObject);
             this.fetchTodos();
         },
           
         /**
-         * 刪除 Todo 項目
+         * 刪除 TodoObject
          * 
          * @param {number} id
-         *      要刪除的 Todo 項目的 ID
+         *      要刪除的 TodoObject 的 ID
          * 
          * @returns {Promise<void>}
          */
