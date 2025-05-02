@@ -6,14 +6,12 @@ on:
       - main
     paths:
       - 'frontend/**'
-      - '.github/workflows/azure-static-web-apps-purple-stone-01f11a20f.yml'
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
       - main
     paths:
       - 'frontend/**'
-      - '.github/workflows/azure-static-web-apps-purple-stone-01f11a20f.yml'
   workflow_dispatch:
 
 jobs:
