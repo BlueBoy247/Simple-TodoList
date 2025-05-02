@@ -10,10 +10,28 @@ on:
       - main
     paths:
       - 'backend/**'
-      - '.github/workflows/main_simple-todolist-backend.yml'
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
+    paths:
+      - 'backend/**'
   workflow_dispatch:
 
 jobs:
+  deactivate_deployments:
+    runs-on: ubuntu-latest
+    name: Deactivate Previous Deployments
+    permissions:
+      deployments: write
+    steps:
+      - name: Set Previous Deployements To Inactive
+        uses: strumwolf/delete-deployment-environment@a4825dd9648c57da8437a4885c3fcad58beac69c # v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          environment: Production - Backend
+          onlyDeactivateDeployments: true
+
   build:
     runs-on: ubuntu-latest
     permissions:
